@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
@@ -9,57 +9,78 @@ import {
 } from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl } from '@solana/web3.js';
 
-// Default styles that can be overridden by your app
 import '@solana/wallet-adapter-react-ui/styles.css';
 import RequestAirdrop from './components/RequestAirdrop';
 import ShowBalance from './components/ShowBalance';
 import VerifyWallet from './components/VerifyWallet';
+import SendToken from './components/SendToken';
 
 function App() {
-
   const network = WalletAdapterNetwork.Devnet;
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-  const wallets = useMemo(
-    () => [
-      /**
-       * Wallets that implement either of these standards will be available automatically.
-       *
-       *   - Solana Mobile Stack Mobile Wallet Adapter Protocol
-       *     (https://github.com/solana-mobile/mobile-wallet-adapter)
-       *   - Solana Wallet Standard
-       *     (https://github.com/anza-xyz/wallet-standard)
-       *
-       * If you wish to support a wallet that supports neither of those standards,
-       * instantiate its legacy wallet adapter here. Common legacy adapters can be found
-       * in the npm package `@solana/wallet-adapter-wallets`.
-       */
-      new UnsafeBurnerWalletAdapter(),
-    ],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [network]
-  );
+  const wallets = useMemo(() => [new UnsafeBurnerWalletAdapter()], [network]);
+
+  const [activeTab, setActiveTab] = useState('send');
 
   return (
-    <main className='w-full min-h-screen px-40 pt-10'>
+    <main className="w-full min-h-screen px-40 pt-10 bg-gray-100">
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets}>
           <WalletModalProvider>
-            <div className='flex justify-between w-full'>
+            <div className="flex justify-between w-full mb-6">
               <WalletMultiButton />
               <WalletDisconnectButton />
             </div>
-            <div className='w-full'>
+            <div className="w-full mb-8">
               <ShowBalance />
             </div>
-            <div>
-              <RequestAirdrop />
-              <VerifyWallet />
+
+            {/* Tabs */}
+            <div className="max-w-2xl bg-white rounded-lg shadow-md mx-auto">
+              <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 ">
+                <ul className="flex flex-wrap -mb-px">
+                  <li className="me-2">
+                    <button
+                      className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'send' ? 'text-[#512da8] border-b-2 border-[#512da8]' : 'border-transparent hover:text-gray-600 hover:border-gray-300'}`}
+                      onClick={() => setActiveTab('send')}
+                    >
+                      Send Token
+                    </button>
+                  </li>
+                  <li className="me-2">
+                    <button
+                      className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'airdrop' ? 'text-[#512da8] border-b-2 border-[#512da8]' : 'border-transparent hover:text-gray-600 hover:border-gray-300'}`}
+                      onClick={() => setActiveTab('airdrop')}
+                    >
+                      Request Airdrop
+                    </button>
+                  </li>
+                  <li className="me-2">
+                    <button
+                      className={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === 'verify' ? 'text-[#512da8] border-b-2 border-[#512da8]' : 'border-transparent hover:text-gray-600 hover:border-gray-300'}`}
+                      onClick={() => setActiveTab('verify')}
+                    >
+                      Verify Wallet
+                    </button>
+                  </li>
+
+
+                </ul>
+              </div>
+
+
+              {/* Tab Content */}
+              <div className="p-6">
+                {activeTab === 'airdrop' && <RequestAirdrop />}
+                {activeTab === 'verify' && <VerifyWallet />}
+                {activeTab === 'send' && <SendToken />}
+              </div>
             </div>
           </WalletModalProvider>
         </WalletProvider>
       </ConnectionProvider>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;

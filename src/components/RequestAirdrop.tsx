@@ -1,6 +1,6 @@
 import { useConnection, useWallet } from '@solana/wallet-adapter-react'
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 function RequestAirdrop() {
@@ -10,6 +10,7 @@ function RequestAirdrop() {
     const [amount, setAmount] = useState(0);
     const minAmount = 0;
     const maxAmount = 5;
+    const [address, setAddress] = useState('');
 
     // Handle decrement
     const handleDecrement = () => {
@@ -35,18 +36,32 @@ function RequestAirdrop() {
         }
     }
 
+    useEffect(() => {
+        if (wallet.publicKey) {
+            setAddress(wallet.publicKey.toBase58());
+        }
+    }, [wallet.publicKey]);
+
+
     return (
-        <div>
-            <h1>Request Airdrop</h1>
-            <form className="max-w-xs">
-                <label
-                    htmlFor="quantity-input"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                    Choose SOL:
-                </label>
+        <div className='max-w-xl mx-auto'>
+            <h2 className="text-2xl font-bold text-center mb-4">Request Airdrop</h2>
+            <div className="mb-6">
+                <label htmlFor="address" className="block mb-2 text-sm font-medium text-gray-900">Wallet address</label>
+                <input
+                    type="text"
+                    id="address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                    placeholder="Wallet Address"
+                    required
+                />
+            </div>
+            <div className="">
+                <label htmlFor="quantity-input" className="block mb-2 text-sm font-medium text-gray-900">Choose SOL Amount: </label>
                 <div className='flex gap-8 '>
-                    <div className="relative flex items-center max-w-[8rem]">
+                    <div className="relative flex items-center max-w-[10rem]">
                         <button
                             type="button"
                             onClick={handleDecrement}
@@ -71,7 +86,7 @@ function RequestAirdrop() {
                     </div>
                     <button
                         onClick={requestAirdrop}
-                        className="bg-[#512da8] hover:bg-[#452394] border border-[#512da8] px-3 rounded-lg text-white"
+                        className="bg-[#512da8] hover:bg-[#452394] flex-1 border border-[#512da8] px-3 rounded-lg text-white"
                     >
                         Request Airdrop
                     </button>
@@ -79,7 +94,7 @@ function RequestAirdrop() {
                 <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500">
                     Please select a number between 0 and 5.
                 </p>
-            </form>
+            </div>
 
         </div>
     )
