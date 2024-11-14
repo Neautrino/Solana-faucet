@@ -5,24 +5,23 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 function RequestAirdrop() {
 
-    const [amount, setAmount] = useState(0);
     const wallet = useWallet();
     const { connection } = useConnection();
-    const [quantity, setQuantity] = useState(0);
-    const minQuantity = 0;
-    const maxQuantity = 5;
+    const [amount, setAmount] = useState(0);
+    const minAmount = 0;
+    const maxAmount = 5;
 
     // Handle decrement
     const handleDecrement = () => {
-        if (quantity > minQuantity) {
-            setQuantity(quantity - 1);
+        if (amount > minAmount) {
+            setAmount(amount - 1);
         }
     };
 
     // Handle increment
     const handleIncrement = () => {
-        if (quantity < maxQuantity) {
-            setQuantity(quantity + 1);
+        if (amount < maxAmount) {
+            setAmount(amount + 1);
         }
     };
 
@@ -58,7 +57,7 @@ function RequestAirdrop() {
                         <input
                             type="text"
                             id="quantity-input"
-                            value={quantity}
+                            value={amount}
                             readOnly
                             className="bg-gray-50 border-y-2 border-gray-300 h-11 text-center text-gray-900 text-sm block w-full py-2.5"
                         />
