@@ -943,7 +943,7 @@
   dependencies:
     "@noble/hashes" "1.4.0"
 
-"@noble/curves@^1.1.0", "@noble/curves@^1.4.2":
+"@noble/curves@^1.1.0", "@noble/curves@^1.4.2", "@noble/curves@^1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@noble/curves/-/curves-1.6.0.tgz#be5296ebcd5a1730fccea4786d420f87abfeb40b"
   integrity sha512-TlaHRXDehJuRNR9TfZDNQ45mMEd5dwUwmicsafcIX4SsNiqnCHKjE/1alYPd/lDRVhxdhUAlv8uEhMCI5zjIJQ==
@@ -1099,9 +1099,9 @@
     draggabilly "^3.0.0"
 
 "@particle-network/chains@*":
-  version "1.7.7"
-  resolved "https://registry.yarnpkg.com/@particle-network/chains/-/chains-1.7.7.tgz#a22f531bdfe7c7519896cf0a414cd75a32a31492"
-  integrity sha512-Q0vXR41x8pSWDxrnT3Ensq0T2cDpnBHrfy1g1Rl0GycO2vTuIMJeA4sPqexUG/Uv39fVKfebt0TLdHS78b/P0w==
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/@particle-network/chains/-/chains-1.7.8.tgz#b8e12b7a798b06697984868e454b2a0599daeeb8"
+  integrity sha512-pTFg1nXJKPs73okoyHEyEto1HqfpPTcUV8IUqu+i/gZNgw3UquKlLXGuhzbWtyvu3hbpu/X10UVM0KICRWdOPQ==
 
 "@particle-network/crypto@^1.0.1":
   version "1.0.1"
@@ -3648,9 +3648,9 @@ eastasianwidth@^0.2.0:
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
 electron-to-chromium@^1.5.41:
-  version "1.5.57"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.57.tgz#cb43af8784166bca24565b3418bf5f775a6b1c86"
-  integrity sha512-xS65H/tqgOwUBa5UmOuNSLuslDo7zho0y/lgQw35pnrqiZh7UOWHCeL/Bt6noJATbA6tpQJGCifsFsIRZj1Fqg==
+  version "1.5.58"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.58.tgz#d90bd7a04d9223dce4e72316e14492140ec9af40"
+  integrity sha512-al2l4r+24ZFL7WzyPTlyD0fC33LLzvxqLCwurtBibVPghRGO9hSTl+tis8t1kD7biPiH/en4U0I7o/nQbYeoVA==
 
 elliptic@6.5.4:
   version "6.5.4"
