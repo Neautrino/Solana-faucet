@@ -29,7 +29,8 @@ function RequestAirdrop() {
 
     async function requestAirdrop() {
         if (wallet.publicKey) {
-            await connection.requestAirdrop(wallet.publicKey, amount * LAMPORTS_PER_SOL);
+            const response = await connection.requestAirdrop(wallet.publicKey, amount * LAMPORTS_PER_SOL);
+            console.log(response)
             alert("Airdropped " + amount + " SOL to " + wallet.publicKey.toBase58());
         } else {
             alert("Wallet is not connected");

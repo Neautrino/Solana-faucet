@@ -21,11 +21,14 @@ function SendToken() {
 			}));
 
 			await wallet.sendTransaction(transaction, connection);
-			alert("Sent" + amount + "SOL to" + receiver);
+			alert("Sent " + amount + " SOL to " + receiver);
 		} catch (error: any) {
 			console.error(error);
 			alert("Send Transaction failed: " + error.message);
 		}
+
+		setReceiver('');
+		setAmount(0);
 	}
 	return (
 		<div className='max-w-xl mx-auto'>
@@ -48,7 +51,8 @@ function SendToken() {
 						type="number"
 						id="number-input"
 						aria-describedby="helper-text-explanation"
-						onChange={(e) => setAmount(parseInt(e.target.value))}
+						step={0.1}
+						onChange={(e) => setAmount(parseFloat(e.target.value))}
 						className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 "
 						placeholder="0"
 						required
