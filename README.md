@@ -54,3 +54,5 @@ Before you begin, ensure you have met the following requirements:
 ## License
 This project is open-source and available under the MIT License.
 
+## Contributions
+We welcome contributions to enhance the functionality and usability of this project. Whether it's fixing bugs, adding new features, or optimizing performance, your efforts are highly valued.
